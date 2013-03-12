@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-script minSpecVersion="1.000000" authoringTool="com.apple.PackageMaker" authoringToolVersion="3.0.2" authoringToolBuild="174">
+    <title>eGalaxTouch</title>
+    <options customize="allow" allow-external-scripts="no" rootVolumeOnly="false"/>
+    <domains enable_anywhere="true" enable_localSystem="true"/>
+    <choices-outline>
+        <line choice="choice9"/>
+        <line choice="choice10"/>
+        <line choice="choice11"/>
+    </choices-outline>
+    <choice id="choice9" title="CUSBInterfaceroot">
+        <pkg-ref id="com.eGalax.egalaxtouch.cusbinterfaceroot.pkg"/>
+    </choice>
+    <choice id="choice10" title="eGalaxTouchroot">
+        <pkg-ref id="com.eGalax.egalaxtouch.egalaxtouchroot.pkg"/>
+    </choice>
+    <choice id="choice11" title="TPMonroot">
+        <pkg-ref id="com.eGalax.egalaxtouch.tpmonroot.pkg"/>
+    </choice>
+    <pkg-ref id="com.eGalax.egalaxtouch.cusbinterfaceroot.pkg" installKBytes="132" version="1.16" auth="Root" onConclusion="RequireRestart">file:./Contents/Packages/cusbinterfaceroot.pkg</pkg-ref>
+    <pkg-ref id="com.eGalax.egalaxtouch.egalaxtouchroot.pkg" installKBytes="260" version="1.16">file:./Contents/Packages/egalaxtouchroot.pkg</pkg-ref>
+    <pkg-ref id="com.eGalax.egalaxtouch.egalaxtouchroot.pkg">
+        <relocate search-id="pkmktoken32">
+            <bundle id="com.eGalax.eGalaxTouch"/>
+        </relocate>
+    </pkg-ref>
+    <pkg-ref id="com.eGalax.egalaxtouch.tpmonroot.pkg" installKBytes="164" version="1.16">file:./Contents/Packages/tpmonroot.pkg</pkg-ref>
+    <pkg-ref id="com.eGalax.egalaxtouch.tpmonroot.pkg">
+        <relocate search-id="pkmktoken36">
+            <bundle id="com.eGalax.TPMon"/>
+        </relocate>
+    </pkg-ref>
+    <locator>
+        <search id="pkmktoken32-1" type="component">
+            <bundle CFBundleIdentifier="com.eGalax.eGalaxTouch" path="/Applications/eGalaxTouch.app"/>
+        </search>
+        <search id="pkmktoken32-0" type="script" script="pkmktoken32_combined()">
+            <script>
+function pkmktoken32_combined() {
+	function pkmk_add_results_to_array(results, array) {
+		for(i = 0; i &lt; results.length; i++)
+			array.push(results[i]);
+	}
+	var result = new Array();
+	var search;
+	search = my.search.results['pkmktoken32-1'];
+	if(search) pkmk_add_results_to_array(search, result);
+	return result;
+}
+</script>
+        </search>
+        <search type="script" id="pkmktoken32" script="pkmktoken32_final()">
+            <script>
+function pkmktoken32_final() {
+	var combined = my.search.results['pkmktoken32-0'];
+	return combined;
+}
+</script>
+        </search>
+        <search id="pkmktoken36-1" type="component">
+            <bundle CFBundleIdentifier="com.eGalax.TPMon" path="/Applications/TPMon.app"/>
+        </search>
+        <search id="pkmktoken36-0" type="script" script="pkmktoken36_combined()">
+            <script>
+function pkmktoken36_combined() {
+	function pkmk_add_results_to_array(results, array) {
+		for(i = 0; i &lt; results.length; i++)
+			array.push(results[i]);
+	}
+	var result = new Array();
+	var search;
+	search = my.search.results['pkmktoken36-1'];
+	if(search) pkmk_add_results_to_array(search, result);
+	return result;
+}
+</script>
+        </search>
+        <search type="script" id="pkmktoken36" script="pkmktoken36_final()">
+            <script>
+function pkmktoken36_final() {
+	var combined = my.search.results['pkmktoken36-0'];
+	return combined;
+}
+</script>
+        </search>
+    </locator>
+</installer-script>
